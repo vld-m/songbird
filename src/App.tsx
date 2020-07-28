@@ -13,6 +13,9 @@ function App() {
   return (
     <div className="app">
       <Header score={score} currentGameStage={GAME_STAGES[stageNumber]} gameStages={GAME_STAGES} />
+      <button type="button" onClick={() => setStageNumber((number) => number + 1)}>
+        Next stage
+      </button>
     </div>
   );
 }
