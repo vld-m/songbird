@@ -7,4 +7,6 @@ const GAME_STAGES = [
   'Морские птицы',
 ];
 
-export { GAME_STAGES };
+const MAX_STAGE_SCORE = 5;
+
+export { GAME_STAGES, MAX_STAGE_SCORE };
