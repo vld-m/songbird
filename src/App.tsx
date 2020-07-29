@@ -3,18 +3,79 @@ import './App.css';
 import React, { useState } from 'react';
 
 import Header from './components/header/Header';
+import Answer from './components/answers/Answers';
+import NextStage from './components/nextStage/NextStage';
 import Results from './components/results/Results';
-import ButtonNextStage from './components/buttonNextStage/ButtonNextStage';
 
-import { GAME_STAGES, MAX_STAGE_SCORE } from './constants';
+interface Bird {
+  name: string;
+  species: string;
+}
 
-function App() {
+interface Data {
+  STAGES: {
+    title: string;
+    birds: Bird[];
+  }[];
+  MAX_STAGE_SCORE: number;
+}
+
+const prepareStageData = (rawStageData: Bird[]) => {
+  const questions = rawStageData.map((bird) => bird.name);
+  const answer = questions[Math.floor(Math.random() * questions.length)];
+
+  return rawStageData.map((bird) => ({
+    ...bird,
+    isSelected: false,
+    isAnswer: bird.name === answer,
+  }));
+};
+
+function App({ data: { STAGES, MAX_STAGE_SCORE } }: { data: Data }) {
   const [score, setScore] = useState(0);
-  const [stageScore, setStageScore] = useState(MAX_STAGE_SCORE);
-  const [stageNumber, setStageNumber] = useState(0);
-  const [isStageClear, setIsStageClear] = useState(true);
 
-  const handleStageChange = () => setStageNumber((number) => number + 1);
+  const [stageNumber, setStageNumber] = useState(0);
+  const [stageData, setStageData] = useState(() => prepareStageData(STAGES[stageNumber].birds));
+  const [selectedBird, setSelectedBird] = useState('');
+  const [stageScore, setStageScore] = useState(MAX_STAGE_SCORE);
+  const [isStageClear, setIsStageClear] = useState(false);
+
+  const handleAnswerChoose = (answer: string) => {
+    if (selectedBird !== answer) {
+      setSelectedBird(answer);
+    }
+
+    if (isStageClear) {
+      return;
+    }
+
+    const bird = stageData.find(({ name }) => name === answer);
+
+    if (bird === undefined || bird.isSelected) {
+      return;
+    }
+
+    if (bird.isAnswer) {
+      setScore(score + stageScore);
+      setIsStageClear(true);
+
+      return;
+    }
+
+    setStageScore(stageScore - 1);
+    setStageData(
+      stageData.map((bird) => (bird.name === answer ? { ...bird, isSelected: true } : bird))
+    );
+  };
+
+  const handleStageChange = () => {
+    setStageNumber(stageNumber + 1);
+    setStageScore(MAX_STAGE_SCORE);
+    setStageData(prepareStageData(STAGES[stageNumber + 1].birds));
+    setSelectedBird('');
+    setIsStageClear(false);
+  };
+
   const handleGameRestart = () => {
     setScore(0);
     setStageScore(0);
@@ -22,7 +83,7 @@ function App() {
     setIsStageClear(false);
   };
 
-  const isGameOver = stageNumber === GAME_STAGES.length;
+  const isGameOver = stageNumber === STAGES.length;
 
   let content;
 
@@ -30,17 +91,26 @@ function App() {
     content = (
       <Results
         score={score}
-        maxScore={MAX_STAGE_SCORE * GAME_STAGES.length}
+        maxScore={MAX_STAGE_SCORE * STAGES.length}
         onRestart={handleGameRestart}
       />
     );
   } else {
-    content = <ButtonNextStage disabled={isStageClear} onStageChange={handleStageChange} />;
+    content = (
+      <>
+        <NextStage onChange={handleStageChange} disabled={!isStageClear} />
+        <Answer choices={stageData.map(({ name }) => name)} onChoose={handleAnswerChoose} />
+      </>
+    );
   }
 
   return (
     <div className="app">
-      <Header stages={GAME_STAGES} currentStage={GAME_STAGES[stageNumber]} score={score} />
+      <Header
+        stageNames={STAGES.map(({ title }) => title)}
+        stageNumber={stageNumber}
+        score={score}
+      />
       <main>{content}</main>
     </div>
   );
