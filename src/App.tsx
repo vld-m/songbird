@@ -24,24 +24,24 @@ function App() {
 
   const isGameOver = stageNumber === GAME_STAGES.length;
 
-  let mainContent;
+  let content;
 
   if (isGameOver) {
-    mainContent = (
+    content = (
       <Results
-        onRestart={handleGameRestart}
         score={score}
         maxScore={MAX_STAGE_SCORE * GAME_STAGES.length}
+        onRestart={handleGameRestart}
       />
     );
   } else {
-    mainContent = <ButtonNextStage onStageChange={handleStageChange} disabled={isStageClear} />;
+    content = <ButtonNextStage disabled={isStageClear} onStageChange={handleStageChange} />;
   }
 
   return (
     <div className="app">
-      <Header score={score} currentGameStage={GAME_STAGES[stageNumber]} gameStages={GAME_STAGES} />
-      <main>{mainContent}</main>
+      <Header stages={GAME_STAGES} currentStage={GAME_STAGES[stageNumber]} score={score} />
+      <main>{content}</main>
     </div>
   );
 }

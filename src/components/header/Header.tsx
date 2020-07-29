@@ -5,13 +5,13 @@ import React from 'react';
 import { getListItemStageClassName } from '../../styleHelpers';
 
 function Header({
+  stages,
+  currentStage,
   score,
-  currentGameStage,
-  gameStages,
 }: {
+  stages: string[];
+  currentStage: string;
   score: number;
-  currentGameStage: string;
-  gameStages: string[];
 }) {
   return (
     <header className="header">
@@ -19,8 +19,8 @@ function Header({
       <div className="score">Score: {score}</div>
       <nav className="navigation">
         <ul className="navigation__list">
-          {gameStages.map((stage) => (
-            <li className={getListItemStageClassName(stage, currentGameStage)} key={stage}>
+          {stages.map((stage) => (
+            <li className={getListItemStageClassName(stage, currentStage)} key={stage}>
               {stage}
             </li>
           ))}

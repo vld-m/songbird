@@ -5,13 +5,13 @@ import React from 'react';
 import { getButtonClassName } from '../../styleHelpers';
 
 function Results({
-  onRestart,
   score,
   maxScore,
+  onRestart,
 }: {
-  onRestart: () => void;
   score: number;
   maxScore: number;
+  onRestart: () => void;
 }) {
   return (
     <>
