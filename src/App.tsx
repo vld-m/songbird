@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 
 import Header from './components/header/Header';
 import Answer from './components/answer/Answer';
+import Info from './components/description/Description';
 import NextStage from './components/nextStage/NextStage';
-import Results from './components/result/Result';
+import Result from './components/result/Result';
 
 interface Bird {
   name: string;
   species: string;
+  description: string;
 }
 
 interface Data {
@@ -17,6 +19,7 @@ interface Data {
     title: string;
     birds: Bird[];
   }[];
+  BIRD_STUB: Bird;
   MAX_STAGE_SCORE: number;
 }
 
@@ -31,18 +34,26 @@ const prepareStageData = (rawStageData: Bird[]) => {
   }));
 };
 
-function App({ data: { STAGES, MAX_STAGE_SCORE } }: { data: Data }) {
+function App({ data: { STAGES, MAX_STAGE_SCORE, BIRD_STUB } }: { data: Data }) {
   const [score, setScore] = useState(0);
 
-  const [stageNumber, setStageNumber] = useState(0);
-  const [stageData, setStageData] = useState(() => prepareStageData(STAGES[stageNumber].birds));
-  const [selectedBird, setSelectedBird] = useState('');
-  const [stageScore, setStageScore] = useState(MAX_STAGE_SCORE);
   const [isStageClear, setIsStageClear] = useState(false);
+  const [stageScore, setStageScore] = useState(MAX_STAGE_SCORE);
+  const [stageNumber, setStageNumber] = useState(0);
+
+  const stageBirds = STAGES[stageNumber].birds;
+  const [stageData, setStageData] = useState(() => prepareStageData(stageBirds));
+  const [selectedBird, setSelectedBird] = useState(BIRD_STUB);
 
   const handleAnswerChoose = (answer: string) => {
-    if (selectedBird !== answer) {
-      setSelectedBird(answer);
+    if (selectedBird.name !== answer) {
+      const newBird = stageBirds.find(({ name }) => name === answer);
+
+      if (newBird === undefined) {
+        return;
+      }
+
+      setSelectedBird(newBird);
     }
 
     if (isStageClear) {
@@ -72,7 +83,7 @@ function App({ data: { STAGES, MAX_STAGE_SCORE } }: { data: Data }) {
     setStageNumber(stageNumber + 1);
     setStageScore(MAX_STAGE_SCORE);
     setStageData(prepareStageData(STAGES[stageNumber + 1].birds));
-    setSelectedBird('');
+    setSelectedBird(BIRD_STUB);
     setIsStageClear(false);
   };
 
@@ -89,7 +100,7 @@ function App({ data: { STAGES, MAX_STAGE_SCORE } }: { data: Data }) {
 
   if (isGameOver) {
     content = (
-      <Results
+      <Result
         score={score}
         maxScore={MAX_STAGE_SCORE * STAGES.length}
         onRestart={handleGameRestart}
@@ -100,6 +111,7 @@ function App({ data: { STAGES, MAX_STAGE_SCORE } }: { data: Data }) {
       <>
         <NextStage onChange={handleStageChange} disabled={!isStageClear} />
         <Answer choices={stageData.map(({ name }) => name)} onChoose={handleAnswerChoose} />
+        <Info bird={selectedBird} />
       </>
     );
   }

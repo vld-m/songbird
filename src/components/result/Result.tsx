@@ -1,4 +1,4 @@
-import './Results.css';
+import './Result.css';
 
 import React from 'react';
 
