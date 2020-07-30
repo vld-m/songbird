@@ -9,7 +9,7 @@ import { GAME_DATA } from './constants';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App data={GAME_DATA} />
+    <App gameData={GAME_DATA} />
   </React.StrictMode>,
   document.getElementById('root')
 );

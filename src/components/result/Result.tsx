@@ -2,6 +2,7 @@ import './Result.css';
 
 import React from 'react';
 
+// helpers
 import { getButtonClassName } from '../../styleHelpers';
 
 function Results({

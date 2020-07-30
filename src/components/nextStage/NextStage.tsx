@@ -1,5 +1,6 @@
 import React from 'react';
 
+// helpers
 import { getButtonClassName } from '../../styleHelpers';
 
 function NextStage({ onChange, disabled }: { onChange: () => void; disabled: boolean }) {

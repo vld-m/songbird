@@ -2,13 +2,11 @@ import './Description.css';
 
 import React from 'react';
 
-import { useImageURL } from './helpers';
+// hooks
+import { useImageURL } from './hooks';
 
-interface Bird {
-  name: string;
-  species: string;
-  description: string;
-}
+// interfaces
+import { Bird } from '../../interfaces';
 
 function Info({ bird: { name, species, description } }: { bird: Bird }) {
   const wikiURL = 'https://ru.wikipedia.org/wiki/' + name;

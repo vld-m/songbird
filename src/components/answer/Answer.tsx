@@ -1,19 +1,19 @@
 import React from 'react';
 
-function Answer({ choices, onChoose }: { choices: string[]; onChoose: (answer: string) => void }) {
+function Answer({ answers, onAnswer }: { answers: string[]; onAnswer: (answer: string) => void }) {
   const handleClick: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void = ({
     target,
   }) => {
     if (target instanceof HTMLLIElement) {
-      onChoose(target.innerHTML);
+      onAnswer(target.innerHTML);
     }
   };
 
   return (
     <ul>
-      {choices.map((item) => (
-        <li onClick={handleClick} key={item}>
-          {item}
+      {answers.map((answer) => (
+        <li onClick={handleClick} key={answer}>
+          {answer}
         </li>
       ))}
     </ul>

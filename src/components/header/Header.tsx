@@ -2,6 +2,7 @@ import './Header.css';
 
 import React from 'react';
 
+// helpers
 import { getListItemStageClassName } from '../../styleHelpers';
 
 function Header({
