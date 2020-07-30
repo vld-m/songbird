@@ -3,9 +3,9 @@ import './App.css';
 import React, { useState } from 'react';
 
 import Header from './components/header/Header';
-import Answer from './components/answers/Answers';
+import Answer from './components/answer/Answer';
 import NextStage from './components/nextStage/NextStage';
-import Results from './components/results/Results';
+import Results from './components/result/Result';
 
 interface Bird {
   name: string;
