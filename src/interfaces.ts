@@ -1,7 +1,7 @@
 interface Bird {
+  description: string;
   name: string;
   species: string;
-  description: string;
 }
 
 interface Stage {

@@ -62,9 +62,9 @@ export const GAME_DATA = {
     { title: 'Морские птицы:', birds: [] },
   ],
   BIRD_STUB: {
+    description: '',
     name: '',
     species: '',
-    description: '',
   },
   MAX_STAGE_SCORE: 5,
 };
