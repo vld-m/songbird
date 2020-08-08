@@ -10,7 +10,7 @@ import NextStage from './components/nextStage/NextStage';
 import Result from './components/result/Result';
 
 // hooks
-import { useAppState } from './hooks';
+import { useAppState } from './hooks/appState';
 
 // interfaces
 import { GameData } from './interfaces';

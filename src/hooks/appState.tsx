@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Bird, GameData, StageBird } from './interfaces';
+import { Bird, GameData, StageBird } from '../interfaces';
 
 const prepareStageData = (rawStageData: Bird[]): StageBird[] => {
   const questions = rawStageData.map((bird) => bird.name);

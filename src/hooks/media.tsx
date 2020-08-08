@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 interface AudioURLResponse {
   recordings: { file: string }[];
@@ -115,4 +118,42 @@ const useImageURL = (title: string) => {
   return imageURL;
 };
 
-export { useAudioURL, useImageURL };
+const useAudioPlayer = (species: string) => {
+  const [audioURL, isAudioURLReady] = useAudioURL(species);
+  const playerRef = useRef<AudioPlayer | null>(null);
+
+  if (
+    isAudioURLReady === false &&
+    playerRef &&
+    playerRef.current &&
+    playerRef.current.audio &&
+    playerRef.current.audio.current
+  ) {
+    playerRef.current.audio.current.pause();
+    playerRef.current.audio.current.currentTime = 0;
+  }
+
+  return (
+    <AudioPlayer
+      ref={playerRef}
+      src={audioURL}
+      autoPlayAfterSrcChange={false}
+      showJumpControls={false}
+      customControlsSection={
+        isAudioURLReady ? [RHAP_UI.MAIN_CONTROLS, RHAP_UI.VOLUME_CONTROLS] : [<ClipLoader />]
+      }
+    />
+  );
+};
+
+const useImage = (name: string) => {
+  const imageURL = useImageURL(name);
+
+  return (
+    <a href={'https://ru.wikipedia.org/wiki/' + name}>
+      <img className="bird__image" src={imageURL} alt={name} />
+    </a>
+  );
+};
+
+export { useImage, useAudioPlayer };
