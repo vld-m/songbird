@@ -5,7 +5,7 @@ import React from 'react';
 // entities
 import Header from './components/header/Header';
 import Answer from './components/answer/Answer';
-import Info from './components/description/Description';
+import Info from './components/info/Info';
 import NextStage from './components/nextStage/NextStage';
 import Result from './components/result/Result';
 
@@ -35,7 +35,7 @@ function App({ gameData }: { gameData: GameData }) {
     content = (
       <>
         <NextStage onChange={handleStageChange} disabled={!isStageClear} />
-        <Answer answers={stageData.map(({ name }) => name)} onAnswer={handleAnswer} />
+        <Answer answers={stageData} onAnswer={handleAnswer} />
         <Info bird={currentBird} />
       </>
     );
@@ -49,13 +49,11 @@ function App({ gameData }: { gameData: GameData }) {
     );
   }
 
+  const stageNames = STAGES.map(({ title }) => title);
+
   return (
     <div className="app">
-      <Header
-        stageNames={STAGES.map(({ title }) => title)}
-        stageNumber={stageNumber}
-        score={score}
-      />
+      <Header stageNames={stageNames} stageNumber={stageNumber} score={score} />
       <main>{content}</main>
     </div>
   );

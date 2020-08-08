@@ -1,4 +1,4 @@
-import './Description.css';
+import './Info.css';
 
 import React, { useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
@@ -9,9 +9,9 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { useAudioURL, useImageURL } from './hooks';
 
 // interfaces
-import { Bird } from '../../interfaces';
+import { StageBird } from '../../interfaces';
 
-function Info({ bird: { name, species, description } }: { bird: Bird }) {
+function Info({ bird: { name, species, description } }: { bird: StageBird }) {
   const imageURL = useImageURL(name);
   const [audioURL, isAudioURLReady] = useAudioURL(species);
   const playerRef = useRef<AudioPlayer | null>(null);

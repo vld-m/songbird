@@ -1,4 +1,12 @@
 export const GAME_DATA = {
+  BIRD_STUB: {
+    description: '',
+    isAnswer: false,
+    isSelected: false,
+    name: '',
+    species: '',
+  },
+  MAX_STAGE_SCORE: 5,
   STAGES: [
     {
       title: 'Разминка',
@@ -61,10 +69,4 @@ export const GAME_DATA = {
     { title: 'Хищные птицы:', birds: [] },
     { title: 'Морские птицы:', birds: [] },
   ],
-  BIRD_STUB: {
-    description: '',
-    name: '',
-    species: '',
-  },
-  MAX_STAGE_SCORE: 5,
 };

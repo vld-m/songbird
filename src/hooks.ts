@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Bird, GameData } from './interfaces';
+import { Bird, GameData, StageBird } from './interfaces';
 
-const prepareStageData = (rawStageData: Bird[]) => {
+const prepareStageData = (rawStageData: Bird[]): StageBird[] => {
   const questions = rawStageData.map((bird) => bird.name);
   const answer = questions[Math.floor(Math.random() * questions.length)];
 
@@ -23,19 +23,21 @@ const useAppState = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
 
   const [currentBird, setCurrentBird] = useState(BIRD_STUB);
 
-  const updateStageState = (isAnswered: boolean, answer: string): void => {
-    if (isAnswered) {
+  const updateStageState = ({ isAnswer, name }: StageBird): void => {
+    const updatedStageData = stageData.map((bird) =>
+      bird.name === name ? { ...bird, isSelected: true } : bird
+    );
+
+    setStageData(updatedStageData);
+
+    if (isAnswer) {
       setIsStageClear(true);
       setScore(score + stageScore);
 
       return;
     }
 
-    const updatedStageData = stageData.map((bird) =>
-      bird.name === answer ? { ...bird, isSelected: true } : bird
-    );
     setStageScore(stageScore - 1);
-    setStageData(updatedStageData);
   };
 
   const handleAnswer = (answer: string) => {
@@ -51,7 +53,7 @@ const useAppState = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
       return;
     }
 
-    updateStageState(bird.isAnswer, answer);
+    updateStageState(bird);
   };
 
   const handleStageChange = () => {

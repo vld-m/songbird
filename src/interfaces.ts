@@ -4,15 +4,20 @@ interface Bird {
   species: string;
 }
 
+interface GameData {
+  BIRD_STUB: StageBird;
+  MAX_STAGE_SCORE: number;
+  STAGES: Stage[];
+}
+
 interface Stage {
   title: string;
   birds: Bird[];
 }
 
-interface GameData {
-  STAGES: Stage[];
-  BIRD_STUB: Bird;
-  MAX_STAGE_SCORE: number;
+interface StageBird extends Bird {
+  isAnswer: boolean;
+  isSelected: boolean;
 }
 
-export type { Bird, Stage, GameData };
+export type { Bird, GameData, Stage, StageBird };
