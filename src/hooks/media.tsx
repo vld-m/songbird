@@ -118,12 +118,12 @@ const useImageURL = (title: string) => {
   return imageURL;
 };
 
-const useAudioPlayer = (species: string) => {
+const useAudioPlayer = (species: string, forceStop: boolean) => {
   const [audioURL, isAudioURLReady] = useAudioURL(species);
   const playerRef = useRef<AudioPlayer | null>(null);
 
   if (
-    isAudioURLReady === false &&
+    (isAudioURLReady === false || forceStop) &&
     playerRef &&
     playerRef.current &&
     playerRef.current.audio &&

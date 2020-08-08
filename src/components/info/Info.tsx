@@ -10,7 +10,7 @@ import { StageBird } from '../../interfaces';
 
 function Info({ bird: { name, species, description } }: { bird: StageBird }) {
   const image = useImage(name);
-  const audioPlayer = useAudioPlayer(species);
+  const audioPlayer = useAudioPlayer(species, false);
 
   if (name === '') {
     return <p>Прослушайте запись и выберите птицу из списка</p>;
