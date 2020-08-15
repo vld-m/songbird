@@ -1,0 +1,30 @@
+.question {
+  display: flex;
+  height: 30vh;
+  align-items: center;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.question__image {
+  display: flex;
+  width: 25vh;
+  height: 25vh;
+  object-fit: cover;
+}
+
+.question__player {
+  display: flex;
+  flex: auto;
+  height: 25vh;
+  margin-left: 3vw;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.question__title {
+  padding: 0 15px;
+}
+
+.rhap_container {
+  box-shadow: none;
+}

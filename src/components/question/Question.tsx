@@ -13,14 +13,16 @@ function Question({ bird: { isSelected, name, species } }: { bird: StageBird }) 
   const image = useImage(name);
   const audioPlayer = useAudioPlayer(species, isSelected);
 
-  const nameStub = '***';
-  const imageStub = <img className="bird__image" src={questionMark} alt={'Question mark'} />;
+  const nameStub = <h2>***</h2>;
+  const imageStub = <img className="question__image" src={questionMark} alt={'Question mark'} />;
 
   return (
     <article className="question">
-      <h2>{isSelected ? name : nameStub}</h2>
       {isSelected ? image : imageStub}
-      {audioPlayer}
+      <div className="question__player">
+        <h2 className="question__title">{isSelected ? name : nameStub}</h2>
+        {audioPlayer}
+      </div>
     </article>
   );
 }

@@ -151,7 +151,7 @@ const useImage = (name: string) => {
 
   return (
     <a href={'https://ru.wikipedia.org/wiki/' + name}>
-      <img className="bird__image" src={imageURL} alt={name} />
+      <img className="question__image" src={imageURL} alt={name} />
     </a>
   );
 };
