@@ -13,7 +13,7 @@ const prepareStageData = (rawStageData: Bird[]): StageBird[] => {
   }));
 };
 
-const useAppState = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
+const useApp = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
   const [score, setScore] = useState(0);
 
   const [isStageClear, setIsStageClear] = useState(false);
@@ -83,4 +83,4 @@ const useAppState = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
   };
 };
 
-export { useAppState };
+export { useApp };

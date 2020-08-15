@@ -11,7 +11,7 @@ import NextStage from './components/nextStage/NextStage';
 import Result from './components/result/Result';
 
 // hooks
-import { useAppState } from './hooks/appState';
+import { useApp } from './hooks/app';
 
 // interfaces
 import { GameData } from './interfaces';
@@ -26,7 +26,7 @@ function App({ gameData }: { gameData: GameData }) {
     handleAnswer,
     handleStageChange,
     handleGameRestart,
-  } = useAppState(gameData);
+  } = useApp(gameData);
 
   const { STAGES, MAX_STAGE_SCORE } = gameData;
   const stageNames = STAGES.map(({ title }) => title);
