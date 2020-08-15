@@ -1,5 +1,36 @@
-.bird__image {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  display: flex;
+  width: 80vw;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 5vh;
+  font-family: 'Julius Sans One', sans-serif;
+  font-weight: normal;
+}
+
+.title_tomato {
+  color: #ff6347;
+}
+
+.score {
+  color: #ff6347;
+}
+
+.answer {
+  display: flex;
+  justify-content: space-between;
 }

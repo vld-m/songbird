@@ -3,9 +3,9 @@ import './App.css';
 import React from 'react';
 
 // entities
-import Header from './components/header/Header';
+import Navigation from './components/navigation/Navigation';
 import Question from './components/question/Question';
-import Answer from './components/answer/Answer';
+import Quiz from './components/quiz/Quiz';
 import Info from './components/info/Info';
 import NextStage from './components/nextStage/NextStage';
 import Result from './components/result/Result';
@@ -32,31 +32,42 @@ function App({ gameData }: { gameData: GameData }) {
   const stageNames = STAGES.map(({ title }) => title);
   const stageAnswer = stageData.find((bird) => bird.isAnswer);
 
-  let content;
+  const getMainContent = () => {
+    if (stageNumber < STAGES.length && stageAnswer) {
+      return (
+        <>
+          <Question bird={stageAnswer} />
+          <section className="answer">
+            <Quiz answers={stageData} onAnswer={handleAnswer} />
+            <Info bird={currentBird} />
+          </section>
+          <NextStage onChange={handleStageChange} disabled={!isStageClear} />
+        </>
+      );
+    }
 
-  if (stageNumber < STAGES.length && stageAnswer) {
-    content = (
-      <>
-        <NextStage onChange={handleStageChange} disabled={!isStageClear} />
-        <Question bird={stageAnswer} />
-        <Answer answers={stageData} onAnswer={handleAnswer} />
-        <Info bird={currentBird} />
-      </>
-    );
-  } else {
-    content = (
+    return (
       <Result
         score={score}
         maxScore={MAX_STAGE_SCORE * STAGES.length}
         onRestart={handleGameRestart}
       />
     );
-  }
+  };
 
   return (
     <div className="app">
-      <Header stageNames={stageNames} stageNumber={stageNumber} score={score} />
-      <main>{content}</main>
+      <header className="header">
+        <h1 className="title">
+          SONG<span className="title_tomato">BIRD</span>
+        </h1>
+        <div>
+          <span className="score">СЧЁТ: </span>
+          {score}
+        </div>
+      </header>
+      <Navigation stageNames={stageNames} stageNumber={stageNumber} />
+      <main>{getMainContent()}</main>
     </div>
   );
 }
