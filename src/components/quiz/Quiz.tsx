@@ -13,22 +13,26 @@ function Quiz({ answers, onAnswer }: { answers: StageBird[]; onAnswer: (answer: 
     }
   };
 
-  const getAnswerStyle = ({ isAnswer, isSelected }: StageBird) => {
+  const getAnswerClassName = ({ isAnswer, isSelected }: StageBird) => {
     if (isSelected) {
       if (isAnswer) {
-        return { borderLeft: '3px solid green' };
+        return 'quiz__item_rigth';
       }
 
-      return { borderLeft: '3px solid red' };
+      return 'quiz__item_wrong';
     }
 
-    return { borderLeft: '' };
+    return '';
   };
 
   return (
     <ul className="quiz">
       {answers.map((answer) => (
-        <li onClick={handleClick} key={answer.name} style={getAnswerStyle(answer)}>
+        <li
+          onClick={handleClick}
+          key={answer.name}
+          className={'quiz__item ' + getAnswerClassName(answer)}
+        >
           {answer.name}
         </li>
       ))}

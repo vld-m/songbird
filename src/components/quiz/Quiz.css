@@ -1,0 +1,23 @@
+.quiz {
+  display: flex;
+  padding: 2vh 0;
+  flex: 1;
+  flex-direction: column;
+  list-style: none;
+  cursor: pointer;
+}
+
+.quiz__item {
+  display: flex;
+  padding: 0 2vw;
+  flex: 1;
+  align-items: center;
+}
+
+.quiz__item_rigth {
+  border-left: 2px solid #008000bf;
+}
+
+.quiz__item_wrong {
+  border-left: 2px solid #ff0000bf;
+}
