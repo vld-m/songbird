@@ -66,7 +66,7 @@ export const GAME_DATA = {
     },
     { title: 'Лесные птицы', birds: [] },
     { title: 'Певчие птицы', birds: [] },
-    { title: 'Хищные птицы:', birds: [] },
-    { title: 'Морские птицы:', birds: [] },
+    { title: 'Хищные птицы', birds: [] },
+    { title: 'Морские птицы', birds: [] },
   ],
 };

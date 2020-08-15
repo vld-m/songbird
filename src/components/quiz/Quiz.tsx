@@ -1,15 +1,10 @@
+import './Quiz.css';
 import React from 'react';
 
 // interfaces
 import { StageBird } from '../../interfaces';
 
-function Answer({
-  answers,
-  onAnswer,
-}: {
-  answers: StageBird[];
-  onAnswer: (answer: string) => void;
-}) {
+function Quiz({ answers, onAnswer }: { answers: StageBird[]; onAnswer: (answer: string) => void }) {
   const handleClick: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void = ({
     target,
   }) => {
@@ -31,7 +26,7 @@ function Answer({
   };
 
   return (
-    <ul>
+    <ul className="quiz">
       {answers.map((answer) => (
         <li onClick={handleClick} key={answer.name} style={getAnswerStyle(answer)}>
           {answer.name}
@@ -41,4 +36,4 @@ function Answer({
   );
 }
 
-export default Answer;
+export default Quiz;
