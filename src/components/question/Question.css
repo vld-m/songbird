@@ -9,6 +9,7 @@
   display: flex;
   width: 25vh;
   height: 25vh;
+  margin: 0 2vw;
   object-fit: cover;
 }
 
@@ -16,15 +17,40 @@
   display: flex;
   flex: auto;
   height: 25vh;
-  margin-left: 3vw;
+  margin: 0 2vw;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.question__title {
-  padding: 0 15px;
+.loader_play {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
 }
 
 .rhap_container {
   box-shadow: none;
+  padding: unset;
+}
+
+.rhap_main-controls {
+  flex: 1 0 auto;
+}
+
+.rhap_progress-container {
+  flex: 21 0;
+}
+
+.rhap_volume-controls {
+  flex: 3 0 auto;
+}
+
+.rhap_current-time {
+  position: relative;
+  left: 10.5%;
+}
+
+.rhap_total-time {
+  position: relative;
+  right: 17.5%;
 }

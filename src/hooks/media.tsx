@@ -22,6 +22,12 @@ interface ImageURLResponse {
 const AUDIOS_URL_CACHE = new Map();
 const IMAGES_URL_CACHE = new Map();
 
+const playLoader = (
+  <div className="loader_play">
+    <ClipLoader />
+  </div>
+);
+
 const getAudioRequestURL = (title: string) => {
   const titleArray = title.split(' ');
 
@@ -120,6 +126,7 @@ const useImageURL = (title: string) => {
 
 const useAudioPlayer = (species: string, forceStop: boolean) => {
   const [audioURL, isAudioURLReady] = useAudioURL(species);
+  const playerUI = [RHAP_UI.PROGRESS_BAR, RHAP_UI.VOLUME_CONTROLS];
   const playerRef = useRef<AudioPlayer | null>(null);
 
   if (
@@ -139,9 +146,10 @@ const useAudioPlayer = (species: string, forceStop: boolean) => {
       src={audioURL}
       autoPlayAfterSrcChange={false}
       showJumpControls={false}
-      customControlsSection={
-        isAudioURLReady ? [RHAP_UI.MAIN_CONTROLS, RHAP_UI.VOLUME_CONTROLS] : [<ClipLoader />]
+      customProgressBarSection={
+        isAudioURLReady ? [RHAP_UI.MAIN_CONTROLS, ...playerUI] : [playLoader, ...playerUI]
       }
+      customControlsSection={[RHAP_UI.CURRENT_TIME, RHAP_UI.DURATION]}
     />
   );
 };
