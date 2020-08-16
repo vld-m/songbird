@@ -13,6 +13,8 @@ const prepareStageData = (rawStageData: Bird[]): StageBird[] => {
   const questions = rawStageData.map((bird) => bird.name);
   const answer = questions[Math.floor(Math.random() * questions.length)];
 
+  console.log('Правильный ответ на текущем уровне - ' + answer);
+
   return rawStageData.map((bird) => ({
     ...bird,
     isSelected: false,
@@ -29,12 +31,6 @@ const useApp = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
   const [stageData, setStageData] = useState(() => prepareStageData(STAGES[stageNumber].birds));
 
   const [currentBird, setCurrentBird] = useState(BIRD_STUB);
-
-  useEffect(() => {
-    console.log(
-      'Правильный ответ на текущем уровне - ' + stageData.find((bird) => bird.isAnswer)?.name
-    );
-  }, [stageData]);
 
   const updateStageState = ({ isAnswer, name }: StageBird): void => {
     const updatedStageData = stageData.map((bird) =>
