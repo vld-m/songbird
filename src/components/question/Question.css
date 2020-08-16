@@ -1,25 +1,24 @@
 .question {
   display: flex;
   height: 30vh;
+  padding: 0 2vw;
   align-items: center;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
-}
-
-.question__image {
-  display: flex;
-  width: 25vh;
-  height: 25vh;
-  margin: 0 2vw;
-  object-fit: cover;
 }
 
 .question__player {
   display: flex;
   flex: auto;
   height: 25vh;
-  margin: 0 2vw;
+  padding: 0 2vw;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.question__title {
+  display: flex;
+  justify-content: center;
+  font-weight: normal;
 }
 
 .loader_play {

@@ -13,16 +13,18 @@ function Info({ bird: { name, species, description } }: { bird: StageBird }) {
   const audioPlayer = useAudioPlayer(species, false);
 
   if (name === '') {
-    return <p>Прослушайте запись и выберите птицу из списка</p>;
+    return <p className="info">Прослушайте запись и выберите птицу из списка</p>;
   }
 
   return (
     <article className="info">
-      <h2>{name}</h2>
       {image}
-      <p>{species}</p>
-      {audioPlayer}
-      <p>{description}</p>
+      <div className="info__wrapper">
+        <h2 className="info__title">{name}</h2>
+        <p>{species}</p>
+        {audioPlayer}
+      </div>
+      <p className="info__description">{description}</p>
     </article>
   );
 }

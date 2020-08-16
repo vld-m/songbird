@@ -14,10 +14,14 @@
   align-items: center;
 }
 
+.quiz__item:hover {
+  background-color: #86868640;
+}
+
 .quiz__item_rigth {
-  border-left: 2px solid #008000bf;
+  border-left: 3px solid #00800080;
 }
 
 .quiz__item_wrong {
-  border-left: 2px solid #ff0000bf;
+  border-left: 3px solid #ff000080;
 }

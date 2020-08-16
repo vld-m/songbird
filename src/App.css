@@ -30,7 +30,14 @@
   color: #ff6347;
 }
 
+.image_bird {
+  display: flex;
+  width: 25vh;
+  height: 25vh;
+  object-fit: cover;
+}
+
 .answer {
   display: flex;
-  height: 40vh;
+  height: 45vh;
 }
