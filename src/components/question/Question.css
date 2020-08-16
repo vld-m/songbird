@@ -1,6 +1,6 @@
 .question {
   display: flex;
-  height: 30vh;
+  height: 27.5vh;
   padding: 0 2vw;
   align-items: center;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
@@ -11,7 +11,7 @@
   flex: auto;
   height: 25vh;
   padding: 0 2vw;
-  flex-direction: column;
+  flex-flow: column wrap;
   justify-content: space-evenly;
 }
 

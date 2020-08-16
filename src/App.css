@@ -6,12 +6,13 @@
 .app {
   display: flex;
   width: 80vw;
-  flex-direction: column;
+  flex-flow: column wrap;
 }
 
 .header {
   display: flex;
-  height: 10vh;
+  height: 7.5vh;
+  margin-top: 2.5vh;
   justify-content: space-between;
   align-items: center;
 }
@@ -32,8 +33,8 @@
 
 .image_bird {
   display: flex;
-  width: 25vh;
-  height: 25vh;
+  width: 22.5vh;
+  height: 22.5vh;
   object-fit: cover;
 }
 

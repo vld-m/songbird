@@ -2,7 +2,7 @@
   display: flex;
   padding: 2vh 0;
   flex: 1;
-  flex-direction: column;
+  flex-flow: column wrap;
   list-style: none;
   cursor: pointer;
 }
