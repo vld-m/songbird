@@ -13,6 +13,7 @@
 @media only screen and (max-width: 768px) {
   .navigation {
     height: fit-content;
+    margin-top: 2.5vh;
     flex-flow: column wrap;
   }
 }
