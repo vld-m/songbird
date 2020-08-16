@@ -2,9 +2,6 @@ import './Result.css';
 
 import React from 'react';
 
-// helpers
-import { getButtonClassName } from '../../styleHelpers';
-
 function Results({
   score,
   maxScore,
@@ -19,7 +16,7 @@ function Results({
       <div>
         CONGRATS! Your score is {score} out of a {maxScore}
       </div>
-      <button className={getButtonClassName(false)} onClick={onRestart}>
+      <button className="button_next-stage" onClick={onRestart}>
         Let's play one more time!
       </button>
     </>

@@ -7,7 +7,7 @@ import Navigation from './components/navigation/Navigation';
 import Question from './components/question/Question';
 import Quiz from './components/quiz/Quiz';
 import Info from './components/info/Info';
-import NextStage from './components/nextStage/NextStage';
+import NextStageButton from './components/nextStageButton/NextStageButton';
 import Result from './components/result/Result';
 
 // hooks
@@ -41,7 +41,7 @@ function App({ gameData }: { gameData: GameData }) {
             <Quiz answers={stageData} onAnswer={handleAnswer} />
             <Info bird={currentBird} />
           </section>
-          <NextStage onChange={handleStageChange} disabled={!isStageClear} />
+          <NextStageButton onChange={handleStageChange} disabled={!isStageClear} />
         </>
       );
     }
