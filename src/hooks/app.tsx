@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react';
 
 import { Bird, GameData, StageBird } from '../interfaces';
 
+const correctAnswerAudio = new Audio(
+  'http://www.orangefreesounds.com/wp-content/uploads/2015/04/Game-show-correct-answer.mp3?_=1'
+);
+const wrongAnswerAudio = new Audio(
+  'http://www.orangefreesounds.com/wp-content/uploads/2019/12/Error-beep-sound-effect.mp3?_=1'
+);
+
 const prepareStageData = (rawStageData: Bird[]): StageBird[] => {
   const questions = rawStageData.map((bird) => bird.name);
   const answer = questions[Math.floor(Math.random() * questions.length)];
@@ -39,11 +46,13 @@ const useApp = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
     if (isAnswer) {
       setIsStageClear(true);
       setScore(score + stageScore);
+      correctAnswerAudio.play();
 
       return;
     }
 
     setStageScore(stageScore - 1);
+    wrongAnswerAudio.play();
   };
 
   const handleAnswer = (answer: string) => {
