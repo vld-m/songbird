@@ -9,3 +9,10 @@
 .navigation__item_selected {
   color: tomato;
 }
+
+@media only screen and (max-width: 768px) {
+  .navigation {
+    height: fit-content;
+    flex-flow: column wrap;
+  }
+}
