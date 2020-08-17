@@ -68,8 +68,13 @@ const useApp = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
   };
 
   const handleStageChange = () => {
-    setIsStageClear(false);
     setStageNumber(stageNumber + 1);
+
+    if (STAGES[stageNumber + 1] === undefined) {
+      return;
+    }
+
+    setIsStageClear(false);
     setStageScore(MAX_STAGE_SCORE);
     setStageData(prepareStageData(STAGES[stageNumber + 1].birds));
     setCurrentBird(BIRD_STUB);
@@ -79,7 +84,9 @@ const useApp = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
     setScore(0);
     setIsStageClear(false);
     setStageNumber(0);
-    setStageScore(0);
+    setStageScore(MAX_STAGE_SCORE);
+    setStageData(prepareStageData(STAGES[0].birds));
+    setCurrentBird(BIRD_STUB);
   };
 
   return {

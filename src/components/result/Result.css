@@ -1,0 +1,23 @@
+.result {
+  display: flex;
+  margin: 15vh 20vw;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.result__message {
+  height: 15vh;
+}
+
+@media only screen and (max-width: 768px) {
+  .result {
+    height: fit-content;
+  }
+
+  .result__message {
+    height: fit-content;
+    margin-bottom: 3vh;
+  }
+}

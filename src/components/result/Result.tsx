@@ -11,15 +11,18 @@ function Results({
   maxScore: number;
   onRestart: () => void;
 }) {
+  const message =
+    score === maxScore
+      ? `Поздравляем! Вы безошибочно ответили на все вопросы и набрали ${maxScore} очков!`
+      : `Поздравляем! Вы набрали ${score} из ${maxScore} возможных!`;
+
   return (
-    <>
-      <div>
-        CONGRATS! Your score is {score} out of a {maxScore}
-      </div>
+    <div className="result">
+      <p className="result__message">{message}</p>
       <button className="button_next-stage" onClick={onRestart}>
-        Let's play one more time!
+        Сыграем ещё?
       </button>
-    </>
+    </div>
   );
 }
 
