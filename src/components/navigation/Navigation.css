@@ -16,4 +16,8 @@
     margin-top: 2.5vh;
     flex-flow: column wrap;
   }
+
+  .navigation__item {
+    margin: 0.5vh 0;
+  }
 }
