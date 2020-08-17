@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 
-import { GAME_DATA } from './constants';
+import { GAME_DATA } from './data';
 
 ReactDOM.render(
   <React.StrictMode>
