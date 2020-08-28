@@ -3,11 +3,9 @@ import { useState } from 'react';
 import { Bird, GameData, StageBird } from '../interfaces';
 
 const correctAnswerAudio = new Audio(
-  'http://www.orangefreesounds.com/wp-content/uploads/2015/04/Game-show-correct-answer.mp3?_=1'
+  'https://freesound.org/data/previews/253/253887_3169537-lq.mp3'
 );
-const wrongAnswerAudio = new Audio(
-  'http://www.orangefreesounds.com/wp-content/uploads/2019/12/Error-beep-sound-effect.mp3?_=1'
-);
+const wrongAnswerAudio = new Audio('https://freesound.org/data/previews/253/253886_3169537-lq.mp3');
 
 const prepareStageData = (rawStageData: Bird[]): StageBird[] => {
   const questions = rawStageData.map((bird) => bird.name);
@@ -42,13 +40,22 @@ const useApp = ({ STAGES, BIRD_STUB, MAX_STAGE_SCORE }: GameData) => {
     if (isAnswer) {
       setIsStageClear(true);
       setScore(score + stageScore);
-      correctAnswerAudio.play();
+      try {
+        correctAnswerAudio.play();
+      } catch (e) {
+        console.log(e);
+      }
 
       return;
     }
 
     setStageScore(stageScore - 1);
-    wrongAnswerAudio.play();
+
+    try {
+      wrongAnswerAudio.play();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleAnswer = (answer: string) => {
