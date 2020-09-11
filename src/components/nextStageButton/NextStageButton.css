@@ -1,0 +1,25 @@
+.button_next-stage {
+  display: block;
+  width: 100%;
+  height: 7.5vh;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: background-color 1s ease;
+}
+
+.button_next-stage_disabled {
+  color: unset;
+  background-color: unset;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}
+
+@media only screen and (max-width: 768px) {
+  .button_next-stage {
+    height: 5vh;
+    margin-bottom: 2vh;
+  }
+}

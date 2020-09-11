@@ -1,0 +1,41 @@
+.info {
+  display: flex;
+  padding: 2vh 2vw;
+  flex: 2;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.info__wrapper {
+  display: flex;
+  height: 25vh;
+  padding: 0 2vw;
+  flex: auto;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.info__title {
+  font-weight: normal;
+}
+
+.info__description {
+  height: 15vh;
+  padding-top: 2vh;
+}
+
+@media only screen and (max-width: 768px) {
+  .info {
+    flex-direction: column;
+  }
+
+  .info__wrapper {
+    width: 100%;
+    margin: 2.5vh 0;
+  }
+
+  .info__description {
+    height: fit-content;
+  }
+}

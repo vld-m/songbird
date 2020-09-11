@@ -1,0 +1,33 @@
+.quiz {
+  display: flex;
+  padding: 2vh 0;
+  flex: 1;
+  flex-flow: column wrap;
+  list-style: none;
+  cursor: pointer;
+}
+
+.quiz__item {
+  display: flex;
+  padding: 0 2vw;
+  flex: 1;
+  align-items: center;
+}
+
+.quiz__item:hover {
+  background-color: #86868640;
+}
+
+.quiz__item_rigth {
+  border-left: 3px solid #00800080;
+}
+
+.quiz__item_wrong {
+  border-left: 3px solid #ff000080;
+}
+
+@media only screen and (max-width: 768px) {
+  .quiz__item {
+    margin: 1vh 0;
+  }
+}
